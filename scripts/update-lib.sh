@@ -9,8 +9,12 @@ root_dir=`dirname $script_dir`
 
 cd $root_dir
 
-read -p "What is the tag for the version of Hammer.js you'd like to bundle? " TAG
+echo "Updating hammer.js remote..."
 
-git subtree pull --prefix lib hammer $APP_GIT_BRANCH --squash
+git fetch hammer
+
+read -p "What is the tag/commit/branch for the version of Hammer.js you'd like to bundle? " TAG
+
+git subtree pull --prefix lib hammer $TAG --squash
 
 cd $current_dir
