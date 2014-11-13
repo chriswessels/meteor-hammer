@@ -1,6 +1,7 @@
 Package.describe({
+  name: 'chriswessels:hammer',
   summary: "A smart-package for integrating with Hammer.js for multi-touch gestures.",
-  version: "2.0.3",
+  version: "2.0.4",
   git: "https://github.com/chriswessels/meteor-hammer.git"
 });
 
