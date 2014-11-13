@@ -7,6 +7,6 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.0');
-  api.addFiles('hammer/hammer.js');
+  api.addFiles('lib/hammer.js');
 });
 
