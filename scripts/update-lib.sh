@@ -12,6 +12,7 @@ cd $root_dir
 echo "Updating hammer.js remote..."
 
 git fetch hammer
+git tag
 
 read -p "What is the tag/commit/branch for the version of Hammer.js you'd like to bundle? " TAG
 
