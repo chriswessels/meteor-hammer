@@ -1,6 +1,6 @@
 Package.describe({
   name: 'chriswessels:hammer',
-  summary: "A smart-package for integrating with Hammer.js for multi-touch gestures. Bundles Hammer.js and provides Template.templateName.gestures() for easy use.",
+  summary: "Bundles Hammer.js and provides Template.templateName.gestures() for easy use of multitouch gestures.",
   version: "2.0.4_2",
   git: "https://github.com/chriswessels/meteor-hammer.git"
 });
