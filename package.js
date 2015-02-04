@@ -1,7 +1,7 @@
 Package.describe({
   name: 'chriswessels:hammer',
   summary: "Bundles Hammer.js and provides Template.templateName.gestures() for easy use of multitouch gestures.",
-  version: "2.0.4_2",
+  version: "2.0.4_3",
   git: "https://github.com/chriswessels/meteor-hammer.git"
 });
 
@@ -9,6 +9,7 @@ Package.onUse(function(api) {
   api.versionsFrom('1.0');
 
   api.use([
+    'underscore@1.0.2',
     'aldeed:template-extension@3.1.1',
     'templating@1.0.0',
     'blaze@2.0.0',
