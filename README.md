@@ -29,7 +29,7 @@ The CSS selector is automatically namespaced by the template, so it won't match 
 
 ## Setting Hammer.js options
 
-You can set Hammer.js options at a template level by using `Template.templateName.hammerOptions()`. It accepts a single argument, the options object to be passed to Hammer.js.
+You can set Hammer.js options application-wide by using `$('body').data('hammer').set({ /* Hammer Options */ });`.
 
 ## Gesture Callback Function
 
