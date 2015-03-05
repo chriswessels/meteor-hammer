@@ -2,7 +2,7 @@ aldeed:template-extension@3.1.1
 base64@1.0.2
 blaze@2.0.4
 blaze-tools@1.0.2
-chriswessels:hammer@2.0.4_3
+chriswessels:hammer@3.0.0-rc1
 deps@1.0.6
 ejson@1.0.5
 geojson-utils@1.0.2
