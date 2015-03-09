@@ -44,7 +44,7 @@ function extractAction (actionString) {
 function handleGestureEvent (gestureName, event) {
   _.each(Object.keys(gestureHandlers[gestureName]), function (selector, index) {
     if ($(event.target).is(selector)) {
-      gestureHandlers[gestureName][selector](event);
+      gestureHandlers[gestureName][selector].call(Blaze.getData($(selector).get(0)), event);
     }
   });
 }
@@ -68,7 +68,9 @@ function setupTemplateGestures () {
         gestureHandlers[action.gestureName] = {};
         $('body').data('hammer').on(action.gestureName, _.partial(handleGestureEvent, action.gestureName));
       }
-      gestureHandlers[action.gestureName][fullSelector] = _.bind(handler, templateInstance);
+      gestureHandlers[action.gestureName][fullSelector] = function (event) {
+        return handler.call(this, event, templateInstance);
+      }
     });
   }
 }
