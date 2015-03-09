@@ -17,7 +17,19 @@ Package.onUse(function(api) {
   ]);
 
   api.addFiles('lib/hammer.js', 'client');
-  api.addFiles('jquery.hammer.js', 'client');
-  api.addFiles('template_integration.js', 'client');
+  api.addFiles('export.js', 'client');
+
+  api.addFiles([
+    'jquery.hammer.js',
+    'template_integration.js'
+  ], 'client');
+
+  api.export('Hammer');
+
 });
 
+Package.onTest(function(api) {
+  api.use('tinytest');
+  api.use('chriswessels:hammer');
+  api.addFiles('test.js', 'client');
+});

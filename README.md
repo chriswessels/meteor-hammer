@@ -1,6 +1,6 @@
-# meteor-hammer
+# chriswessels:hammer
 
-A smart-package for integrating with Hammer.js for multi-touch gestures. Bundles Hammer.js and provides `Template.templateName.gestures()` for easy use.
+A smart-package for integrating with [Hammer.js](https://github.com/hammerjs/hammer.js) for multi-touch gestures. Bundles Hammer.js and provides `Template.templateName.gestures()` for easy use.
 
 ## Example
 
