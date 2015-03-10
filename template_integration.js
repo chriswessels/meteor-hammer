@@ -43,10 +43,14 @@ function extractAction (actionString) {
 }
 function handleGestureEvent (gestureName, event) {
   _.each(Object.keys(gestureHandlers[gestureName]), function (selector, index) {
-    if ($(event.target).is(selector)) {
-      gestureHandlers[gestureName][selector].call(Blaze.getData($(selector).get(0)), event);
+    var eventElem = $(event.target).get(0),
+        selectorElem = $(selector).get(0);
+
+    if (selectorElem && ($(eventElem).is(selector) || $.contains(selectorElem, eventElem))) {
+      gestureHandlers[gestureName][selector].call(Blaze.getData(eventElem), event);
     }
   });
+  return true;
 }
 function setupTemplateGestures () {
   var templateInstance = this,
