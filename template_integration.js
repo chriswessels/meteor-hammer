@@ -44,11 +44,17 @@ function extractAction (actionString) {
 function handleGestureEvent (gestureName, event) {
   _.each(Object.keys(gestureHandlers[gestureName]), function (selector, index) {
     var eventElem = $(event.target).get(0);
-    _.each($(selector), function(selectorElem, index) {
-      if (selectorElem && ($(eventElem).is(selector) || $.contains(selectorElem, eventElem))) {
-        gestureHandlers[gestureName][selector].call(Blaze.getData(eventElem), event);
-      }
-    });
+    if ($(eventElem).is(selector)) {
+      gestureHandlers[gestureName][selector].call(Blaze.getData(eventElem), event);
+    } else {
+      var done = false;
+      _.each($(selector), function(selectorElem, index) {
+        if (!done && selectorElem && $.contains(selectorElem, eventElem)) {
+          gestureHandlers[gestureName][selector].call(Blaze.getData(eventElem), event);
+          done = true;
+        }
+      });
+    }
   });
   return true;
 }
