@@ -17,7 +17,7 @@ function getTopSelector (element) {
         return name + index + id + clss;
   }).join(' > ');
   return quickCss;
-};
+}
 
 function checkGestureMap (gestureMap) {
   if (gestureMap && typeof gestureMap === 'object' && Object.keys(gestureMap).length > 0) {
@@ -97,7 +97,7 @@ function setupTemplateGestures () {
         }
         gestureHandlers[action.gestureName][fullSelector] = function (event) {
           return handler.call(this, event, templateInstance);
-        }
+        };
       });
     });
   }
@@ -127,12 +127,12 @@ Template.prototype.hammerOptions = function (hammerOptions) {
   Meteor.startup(function () {
     $('body').data('hammer').set(hammerOptions);
   });
-}
+};
 Template.prototype.gestures = function (gestureMap) {
   if (checkGestureMap(gestureMap)) {
     this._gestures = gestureMap;
   }
-}
+};
 Meteor.startup(function () {
   $('body').hammer({});
   Template.onRendered(setupTemplateGestures);
