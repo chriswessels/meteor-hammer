@@ -1,4 +1,4 @@
-# chriswessels:meteor-hammer@4.0.0-rc1 API
+# chriswessels:hammer@4.0.0-rc1 API
 
 ## Introduction
 
