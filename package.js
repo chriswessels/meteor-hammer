@@ -1,7 +1,7 @@
 Package.describe({
-  name: 'chriswessels:hammer',
+  name: 'meteor-hammer',
   summary: "Bundles Hammer.js and provides Template.templateName.gestures() for easy use of multitouch gestures.",
-  version: "3.1.1",
+  version: "4.0.0-rc1",
   git: "https://github.com/chriswessels/meteor-hammer.git"
 });
 
@@ -9,19 +9,18 @@ Package.onUse(function(api) {
   api.versionsFrom('1.0');
 
   api.use([
-    'underscore@1.0.2',
-    'aldeed:template-extension@3.4.3',
-    'templating@1.0.0',
-    'blaze@2.0.0',
-    'jquery@1.0.0'
+    'underscore@1.0.3',
+    'templating@1.1.1',
+    'blaze@2.1.2',
+    'random@1.0.3'
   ]);
 
   api.addFiles('lib/hammer.js', 'client');
   api.addFiles('export.js', 'client');
 
   api.addFiles([
-    'jquery.hammer.js',
-    'template_integration.js'
+    'hammer_touch_area.html',
+    'hammer_touch_area.js'
   ], 'client');
 
   api.export('Hammer');

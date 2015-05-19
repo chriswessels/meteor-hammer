@@ -1,5 +1,7 @@
 # chriswessels:hammer
 
+** Outdated, see `API.md` **
+
 A smart-package for integrating with [Hammer.js](https://github.com/hammerjs/hammer.js) for multi-touch gestures. Bundles Hammer.js and provides `Template.templateName.gestures()` for easy use.
 
 ## Example

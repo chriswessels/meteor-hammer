@@ -1,0 +1,8 @@
+<template name="HammerTouchArea">
+  {{#unless Template.contentBlock}}
+    <!-- No content provided to HammerTouchArea. Use like this: {{#HammerTouchArea}} ... {{/HammerTouchArea}} -->
+  {{/unless}}
+  <div class="hammer-touch-area" id="{{touchAreaId}}">
+    {{> Template.contentBlock}}
+  </div>
+</template>
