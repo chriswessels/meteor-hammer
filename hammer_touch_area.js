@@ -94,7 +94,7 @@ Template.HammerTouchArea.onRendered(function () {
   if (tagOptions.configureCallback) {
     templateInstance._hammer.instance = tagOptions.configureCallback(templateInstance._hammer.instance, templateInstance);
     if (!templateInstance._hammer.instance) {
-      console.log('You forgot to return the Hammer.js instance in your configureCallback passed into HammerTouchArea.');
+      console.warn('You forgot to return the Hammer.js instance in your configureCallback passed into HammerTouchArea.');
       return;
     }
   }
