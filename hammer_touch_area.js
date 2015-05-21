@@ -83,6 +83,8 @@ Template.HammerTouchArea.onCreated(function () {
         });
       });
     }
+  } else {
+    console.warn('You haven\'t passed a gesture map into HammerTouchArea using gestureMap property.')
   }
 });
 
