@@ -49,6 +49,7 @@ You will need to pass an object into `HammerTouchArea` via the `gestureMap` prop
 The API for this object, a gesture map, is identical to the event map that you pass into `Template.foo.events`. The object keys should follow the format `gestureName cssSelector` (or multiple strings in this format separated by a comma, e.g. `tap .foo, swiperight .bar`) and the value should be a callback function that is executed when the specified gestures are performed on the element(s) matching the CSS selector(s). Example of a gesture map object:
 
 ```javascript
+/* The gesture map should follow this format: */
 {
   'swiperight .foo .bar': function (event, templateInstance) {
     /* `event` is the Hammer.js event object */
@@ -59,6 +60,18 @@ The API for this object, a gesture map, is identical to the event map that you p
     /* ... */
   }
 }
+
+/* This is a gesture map being returned by a helper: */
+Template.foo.helpers({
+  templateGestures: {
+    'swiperight .foo .bar': function (event, templateInstance) {
+      /* ... */
+    },
+    'doubletap .foo .baz, swipeup .goo': function (event, templateInstance) {
+      /* ... */
+    }
+  }
+});
 ```
 
 The callback function you specify will be passed two arguments: the event object provided by Hammer.js and the `Blaze.TemplateInstance` for your template.
@@ -67,7 +80,7 @@ The `this` context of the callback function will be set to the data context of t
 
 ## Configuring Hammer.js
 
-1. You can pass an options object into `HammerTouchArea` for the `Hammer.Manager` instance. See below.
+1. You can specify initialisation options for the `Hammer.Manager` instance. See below.
 1. You can do arbitrary configuration on the `Hammer.Manager` instance in a callback. See below.
 
 ### Initialisation Options
