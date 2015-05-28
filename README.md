@@ -1,8 +1,8 @@
 # chriswessels:hammer
 
-*You are looking at the `rewrite` branch which is slated for the `4.0.0` release. It features a new, more robust API, and rewritten internals. This document is a work in progress!*
-
 A smart-package for integrating with [Hammer.js](https://github.com/hammerjs/hammer.js) for multi-touch gesture support in your Templates.
+
+*From version `4.0.0` onwards, there is a new API. For help migrating your existing implementation over to the new API, see [MIGRATION.md](https://github.com/chriswessels/meteor-hammer/blob/master/MIGRATION.md).*
 
 ## Basic Usage
 

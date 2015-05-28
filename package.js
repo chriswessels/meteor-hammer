@@ -1,7 +1,7 @@
 Package.describe({
   name: 'chriswessels:hammer',
   summary: "A smart-package for integrating with Hammer.js for multi-touch gesture support in your Templates.",
-  version: "4.0.0-rc1",
+  version: "4.0.0",
   git: "https://github.com/chriswessels/meteor-hammer.git"
 });
 
@@ -27,8 +27,8 @@ Package.onUse(function(api) {
 
 });
 
-Package.onTest(function(api) {
-  api.use('tinytest');
-  api.use('chriswessels:hammer');
-  api.addFiles('test.js', 'client');
-});
+// Package.onTest(function(api) {
+//   api.use('tinytest');
+//   api.use('chriswessels:hammer');
+//   api.addFiles('test.js', 'client');
+// });
