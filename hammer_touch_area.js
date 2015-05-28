@@ -156,6 +156,11 @@ Template.HammerTouchArea.onRendered(function () {
   });
 });
 
+// Destroy Hammer.js instance on template teardown
+Template.HammerTouchArea.onDestroyed(function () {
+  this._hammer.instance && this._hammer.instance.destroy();
+});
+
 Template.HammerTouchArea.helpers({
   touchAreaId: function () {
     var templateInstance = Template.instance();
