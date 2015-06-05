@@ -167,9 +167,7 @@ For each occurrence of `HammerTouchArea` in your templates, chriswessels:hammer 
 
 If you have provided a `configureCallback`, this is callback executed and passed the `Hammer.Manager` instance. The return value of the callback is set to the instance of `Hammer.Manager` attached to the `HammerTouchArea`'s `Blaze.TemplateInstance`.
 
-The gesture map that you pass into `HammerTouchArea` via the `gestureMap` property is parsed, and a series of generic event-specific callbacks are attached to the `Hammer.Manager` instance.
-
-When these fire (as a result of touch actions being performed on the template DOM), they determine whether any of the touch behaviour current matches the selectors you specified in the gesture map, and if so, your callbacks are fired.
+The gesture map that you pass into `HammerTouchArea` via the `gestureMap` property is parsed, and a series of generic gesture callbacks are attached to the `Hammer.Manager` instance. When these fire (as a result of touch actions being performed on the template DOM), they determine whether any of the current touch behaviour matches the selectors you specified in the gesture map, and if so, your callbacks are fired.
 
 ## License
 
