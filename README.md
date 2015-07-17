@@ -2,7 +2,7 @@
 
 A smart-package for integrating with [Hammer.js](https://github.com/hammerjs/hammer.js) for multi-touch gesture support in your Templates.
 
-*From version `4.0.0` onwards, there is a new API. For help migrating your existing implementation over to the new API, see [MIGRATION.md](https://github.com/chriswessels/meteor-hammer/blob/master/MIGRATION.md).*
+Out of the box it supports Panning, Pinching, (Long) Pressing, Rotating, Swiping and Tapping. You can also register and use custom compound gestures.
 
 ## Basic Usage
 
@@ -24,7 +24,7 @@ Template.foo.helpers({
     'swipeleft ul li': function (event, templateInstance) {
       /* `event` is the Hammer.js event object */
       /* `templateInstance` is the `Blaze.TemplateInstance` */
-      /* `this` is the data context of the element in your template, so in this case the iteree from someArray in the template */
+      /* `this` is the data context of the element in your template, so in this case `someField` from `someArray` in the template */
     }
   }
 });
@@ -40,32 +40,44 @@ In your Meteor.js project directory, run
 
 ## API
 
-The `HammerTouchArea` template block helper is your interface for enabling multi-touch gestures in your templates. Generally, you only need one occurrence of `HammerTouchArea` in each template you want to specify gestural behaviour for.
+The `HammerTouchArea` template block helper is your interface for enabling gestures in your templates. Generally, you only need one occurrence of `HammerTouchArea` in each template you want to specify gestural behaviour for.
 
-A template block helper consists of a start tag and an end tag. The start tag looks like this, `{{#HammerTouchArea property1=value1 property2=value2}}` (where `property1` and `property2` are properties being set on the helper), and the end tag looks like this, `{{/HammerTouchArea}}`. In between the start and end tags, you can put your own template code.
+### HammerTouchArea
 
-You will need to pass an object into `HammerTouchArea` via the `gestureMap` property that maps selectors to callbacks. This is a required property and a warning will be printed to the browser console if you leave it out.
+In order to define which gestures you want to attach behaviour to, you'll need to pass an object into `HammerTouchArea` via the `gestureMap` property.
 
-The API for this object, a gesture map, is identical to the event map that you pass into `Template.foo.events`. The object keys should follow the format `gestureName cssSelector` (or multiple strings in this format separated by a comma, e.g. `tap .foo, swiperight .bar`) and the value should be a callback function that is executed when the specified gestures are performed on the element(s) matching the CSS selector(s). Example of a gesture map object:
+An instance of `HammerTouchArea` looks like this in your HTML:
+
+```html
+  <div class="hello-world">
+    <!-- HammerTouchArea start tag below -->
+    {{#HammerTouchArea gestureMap=myGestures}}
+      <div class="gesture-enabled-html">
+        <!-- Gestures on HTML in here will register in your gestureMap. See below. -->
+      </div>
+    {{/HammerTouchArea}}
+    <!-- HammerTouchArea end tag above -->
+  </div>
+```
+
+### Gesture Maps
+
+A gesture map object ties selector strings to callback functions. It lets you specify which elements inside the `HammerTouchArea` you want to attach behaviour to, and which code should run when those touch gestures are detected. It follows exactly the same format as the object you pass into `Template.fooBar.events`.
+
+The object's keys should follow the format `gestureName cssSelector` (or multiple strings in this format separated by a comma, e.g. `tap .foo, swiperight .bar`) and the value should be a callback function that is executed when the specified gestures are performed on the element(s) matching the CSS selector(s).
+
+Generally you should define your gesture map as a template helper so that you can pass it into the `gestureMap` property of your `HammerTouchArea`.
+
+Example of defining a gesture map object as a helper:
 
 ```javascript
-/* The gesture map should follow this format: */
-{
-  'swiperight .foo .bar': function (event, templateInstance) {
-    /* `event` is the Hammer.js event object */
-    /* `templateInstance` is the `Blaze.TemplateInstance` */
-    /* `this` is the data context of the element in your template */
-  },
-  'doubletap .foo .baz, swipeup .goo': function (event, templateInstance) {
-    /* ... */
-  }
-}
-
-/* This is a gesture map being returned by a helper: */
+/* This is a gesture map being returned by a helper named `templateGestures`: */
 Template.foo.helpers({
   templateGestures: {
     'swiperight .foo .bar': function (event, templateInstance) {
-      /* ... */
+      /* `event` is the Hammer.js event object */
+      /* `templateInstance` is the `Blaze.TemplateInstance` */
+      /* `this` is the data context of the element in your template */
     },
     'doubletap .foo .baz, swipeup .goo': function (event, templateInstance) {
       /* ... */
@@ -168,6 +180,10 @@ For each occurrence of `HammerTouchArea` in your templates, chriswessels:hammer 
 If you have provided a `configureCallback`, this is callback executed and passed the `Hammer.Manager` instance. The return value of the callback is set to the instance of `Hammer.Manager` attached to the `HammerTouchArea`'s `Blaze.TemplateInstance`.
 
 The gesture map that you pass into `HammerTouchArea` via the `gestureMap` property is parsed, and a series of generic gesture callbacks are attached to the `Hammer.Manager` instance. When these fire (as a result of touch actions being performed on the template DOM), they determine whether any of the current touch behaviour matches the selectors you specified in the gesture map, and if so, your callbacks are fired.
+
+## Migrating from < 4.0.0
+
+From version `4.0.0` onwards, there is a new API. For help migrating your existing implementation over to the new API, see [MIGRATION.md](https://github.com/chriswessels/meteor-hammer/blob/master/MIGRATION.md).
 
 ## License
 

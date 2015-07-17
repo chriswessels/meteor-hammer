@@ -16,7 +16,7 @@ function getParentTemplateInstance (currentInstance, height, includeBlockHelpers
   }
 
   // If height is null or undefined, we default to 1, the first parent.
-  if (height == null) {
+  if (!height) {
     height = 1;
   }
 
@@ -87,7 +87,7 @@ function extractActions (actionString) {
 // Fire the necessary user-defined callbacks when Hammer.js fires associated gesture events
 function handleGestureEvent (templateInstance, gestureName, event) {
   _.each(Object.keys(templateInstance._hammer.gestureHandlers[gestureName]), function (selector, index) {
-    var eventElem = $(event.target).get(0);
+    var eventElem = event.target;
     if ($(eventElem).is(selector)) {
       templateInstance._hammer.gestureHandlers[gestureName][selector].call(Blaze.getData(eventElem), event);
     } else {
@@ -133,7 +133,7 @@ Template.HammerTouchArea.onCreated(function () {
       });
     }
   } else {
-    console.warn('You haven\'t passed a gesture map into HammerTouchArea using gestureMap property.')
+    console.warn('You haven\'t passed a gesture map into HammerTouchArea using gestureMap property.');
   }
 });
 
@@ -158,7 +158,9 @@ Template.HammerTouchArea.onRendered(function () {
 
 // Destroy Hammer.js instance on template teardown
 Template.HammerTouchArea.onDestroyed(function () {
-  this._hammer.instance && this._hammer.instance.destroy();
+  if (this._hammer.instance) {
+    this._hammer.instance.destroy();
+  }
 });
 
 Template.HammerTouchArea.helpers({
