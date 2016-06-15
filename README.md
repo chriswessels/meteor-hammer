@@ -152,7 +152,7 @@ Template.baz.helpers({
   configureHammer: function () {
     return function (hammer, templateInstance) {
       var twoFingerSwipe = new Hammer.Swipe({
-        event: '2fingerswipe', /* prefix for custom swipe events, e.g. 2fingerswipeleft, 2fingerswiperight */
+        event: '2fingerswiperight', /* prefix for custom swipe events, e.g. 2fingerswipeleft, 2fingerswiperight */
         pointers: 2,
         velocity: 0.5
       });
